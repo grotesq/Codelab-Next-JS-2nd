@@ -28,7 +28,9 @@ const Nav = () => (
         </Link>
       </li>
       <li>
-        <a href="/groups/detail">Groups Detail</a>
+        <Link href='/groups/detail'>
+          <a>Groups Detail</a>
+        </Link>
       </li>
       {links.map(({ key, href, label }) => (
         <li key={key}>
