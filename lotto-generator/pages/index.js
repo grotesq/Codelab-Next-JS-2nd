@@ -77,7 +77,7 @@ const Home = () => {
 
       <div className='container'>
         <Row>
-          { list.map( element => <Number>{ element }</Number> ) }
+          { list.map( element => <Number key={ element }>{ element }</Number> ) }
         </Row>
 
         <div>
