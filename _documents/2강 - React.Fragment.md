@@ -24,3 +24,15 @@ import React from 'react';
   <li>...</li>
 </ul>
 ```
+
+`<></>`로 줄여서 쓸 수도 있다
+
+```js
+<ul>
+  <>
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
+  </>
+</ul>
+```
