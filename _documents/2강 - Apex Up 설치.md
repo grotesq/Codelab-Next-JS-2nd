@@ -41,3 +41,19 @@ git bash 상에서 `version` 명령으로 설치 여부를 확인할 수 있다.
 ```bash
 up version
 ```
+
+### Linux의 경우
+
+Github 저장소의 release 페이지에서 다운받을 수 있다.  
+https://github.com/apex/up/releases  
+압축 해제 후 `up`을 `/usr/local/bin` 위치로 옮긴다.
+
+```bash
+sudo mv ./up /usr/local/bin/
+```
+
+터미널 상에서 `version` 명령으로 설치 여부를 확인할 수 있다.
+
+```bash
+up version
+```
