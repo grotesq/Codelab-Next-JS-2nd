@@ -1,0 +1,31 @@
+{
+    "name": "lotto-generator",
+    "profile": "default",
+    "regions": ["ap-northeast-2"],
+    "lambda": {
+      "memory": 256,
+      "runtime": "nodejs10.x"
+    },
+    "proxy": {
+      "command": "npm start",
+      "timeout": 25,
+      "listen_timeout": 15,
+      "shutdown_timeout": 15
+    },
+    "stages": {
+      "development": {
+        "proxy": {
+          "command": "yarn dev"
+        }
+      }
+    },
+    "environment": {
+      "NODE_ENV": "production"
+    },
+    "error_pages": {
+      "variables": {
+        "support_email": "unknown@grotesq.com",
+        "color": "#2986e2"
+      }
+    }
+  }
