@@ -3,6 +3,8 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Nav from '../components/nav'
 
+import firebaseApp from '../firebase/firebaseApp';
+
 const Home = () => (
   <div>
     <Head>
