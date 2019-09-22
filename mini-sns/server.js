@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const Koa = require('koa');
 const cors = require('@koa/cors');
 const next = require('next');
@@ -11,7 +9,15 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const koaBody = require('koa-body');
 
-const api = require( './api' );
+const api = new Router({ prefix: '/api' });
+
+api.get('/', async context => {
+  context.body = 'api';
+});
+
+api.get('/ping', async context => {
+  context.body = 'pong';
+});
 
 app
   .prepare()
