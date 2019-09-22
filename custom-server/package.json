@@ -1,0 +1,20 @@
+{
+  "name": "custom-server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon server.js --exec",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "koa": "^2.8.1",
+    "koa-body": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "next": "9.0.6",
+    "nodemon": "^1.19.2",
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
+  }
+}
