@@ -1,0 +1,14 @@
+```
+{
+  "name": "project-name",
+  "version": 2,
+  "builds": [
+    { "src": "/static/*", "use": "@now/static" },
+    { "src": "package.json", "use": "@now/next", "config": { "maxLambdaSize": "50mb" }  }
+  ],
+  "routes": [
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
+```
