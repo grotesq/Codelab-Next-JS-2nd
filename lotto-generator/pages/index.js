@@ -81,7 +81,7 @@ const Home = () => {
         </Row>
 
         <div>
-          <button onClick={ regenerate }>재생성</button>
+          <button style={{ fontSize: 24, marginTop: 20 }} onClick={ regenerate }>재생성</button>
           {/* <button onClick={ () => setList( generate() ) }>재생성</button> */}
         </div>
       </div>
