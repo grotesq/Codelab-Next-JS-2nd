@@ -20,7 +20,12 @@
       }
     },
     "environment": {
-      "NODE_ENV": "production"
+      "NODE_ENV": "production",
+      "API_HOST": "https://api.service.com",
+      "DB_HOST": "https://rds.service.com",
+      "DB_USER": "master",
+      "DB_PASSWORD": "qwef8a9sdfqowenfn",
+      "DB_NAME": "lotto"
     },
     "error_pages": {
       "variables": {
