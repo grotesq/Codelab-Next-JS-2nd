@@ -2,6 +2,7 @@ import React from 'react';
 import FeedForm from '../components/FeedForm';
 import axios from 'axios';
 import firebaseApp from '../firebase/firebaseApp';
+import Link from 'next/link';
 
 const db = firebaseApp.firestore();
 
@@ -31,7 +32,9 @@ class Feeds extends React.Component {
                     return (
                         <li key={ item.id }>
                             <p>
-                                { item.content }
+                                <Link href={ '/feed' } as={ '/feed/' + item.id }>
+                                    <a>{ item.content }</a>
+                                </Link>
                                 <br/>
                                 <small>{ item.created_at }</small>
                             </p>

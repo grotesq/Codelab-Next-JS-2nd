@@ -17,10 +17,18 @@ export default () => {
     }
     return (
         <>
-            <input type="text"
-                   value={ content }
-                   onChange={ event => setContent( event.target.value ) }/>
-            <button onClick={ submit }>전송</button>
+            <div className="form-inline">
+                <div className="form-group">
+                    <input type="text"
+                        className="form-control"
+                        value={ content }
+                        onChange={ event => setContent( event.target.value ) }/>
+                </div>
+                <div className="form-group">
+                    <button className="btn btn-primary"
+                            onClick={ submit }>전송</button>
+                </div>
+            </div>
         </>
     )
 }
