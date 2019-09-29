@@ -1,7 +1,7 @@
 const firebase = require( 'firebase/app' );
 // 필요한 서비스를 추가 로드
 require( 'firebase/firestore' );
-// require( 'firebase/auth' );
+require( 'firebase/auth' );
 
 let app;
 
