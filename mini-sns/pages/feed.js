@@ -1,11 +1,32 @@
+import React from 'react';
 import { useRouter } from 'next/router';
+import firebaseApp from '../firebase/firebaseApp';
+import { withAppContext } from '../contexts/AppContext';
 
-export default () => {
+const db = firebaseApp.firestore();
+
+let Feed = ( props ) => {
     const router = useRouter();
-    console.log( 'query', router.query );
+    const id = router.query.id;
     return (
         <>
-            Feed
+            { props.data.content }
         </>
     )
 }
+
+// 서버사이드 렌더링 & SPA 라우팅
+Feed.getInitialProps = async context => {
+    const docRef = await db.collection('feeds')
+        .doc( context.query.id )
+        .get();
+    const data = docRef.data();
+    console.log( 'doc data', data );
+    return {
+        data,
+    };
+}
+
+Feed = withAppContext( Feed );
+
+export default Feed;

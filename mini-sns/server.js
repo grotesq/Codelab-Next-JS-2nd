@@ -48,6 +48,11 @@ app
     const server = new Koa();
     const router = new Router();
 
+    router.get('/feed/:id', async context => {
+      app.render( context.req, context.res, '/feed', { id: context.params.id } );
+      context.respond = false;
+    });
+
     router.get('*', async context => {
       await handle(context.req, context.res);
       context.respond = false;

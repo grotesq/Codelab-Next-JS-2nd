@@ -3,6 +3,7 @@ import FeedForm from '../components/FeedForm';
 import axios from 'axios';
 import firebaseApp from '../firebase/firebaseApp';
 import Link from 'next/link';
+import { withAppContext } from '../contexts/AppContext';
 
 const db = firebaseApp.firestore();
 
@@ -24,15 +25,18 @@ class Feeds extends React.Component {
     }
     render() {
         return <>
-            <div>
-                <FeedForm/>
-            </div>
+            { this.props.context.user && (
+                <div>
+                    <FeedForm/>
+                </div>
+            ) }
             <ul>
                 { this.state.list.map( item => {
                     return (
                         <li key={ item.id }>
                             <p>
-                                <Link href={ '/feed' } as={ '/feed/' + item.id }>
+                                <Link href={ '/feed?id=' + item.id }
+                                      as={ '/feed/' + item.id }>
                                     <a>{ item.content }</a>
                                 </Link>
                                 <br/>
@@ -55,5 +59,7 @@ Feeds.getInitialProps = async () => {
         list: response.data,
     };
 }
+
+Feeds = withAppContext( Feeds );
 
 export default Feeds;

@@ -2,7 +2,7 @@ import React from 'react'
 import App from 'next/app'
 import Link from 'next/link';
 import AppContainer from '../components/AppConatiner';
-import firebaseApp from '../firebase/firebaseApp';
+import { AppProvider } from '../contexts/AppContext';
 
 // 실제 앱의 엔트리 포인트
 class MyApp extends App {
@@ -23,7 +23,24 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps } = this.props;
+
+    return <div>
+            <AppProvider>
+                <div>
+                    <header>
+                        <Link href='/feeds'>
+                            <a>피드 목록</a>
+                        </Link>
+                    </header>
+                </div>
+                <AppContainer>
+                    <Component {...pageProps} />
+                </AppContainer>
+            </AppProvider>
+        </div>
+
+
     if( this.state.user ) {
         return <div>
             <AppContainer>
@@ -37,37 +54,6 @@ class MyApp extends App {
         </>
     }
     
-  }
-
-  componentDidMount() {
-    firebaseApp.auth().getRedirectResult().then(function(result) {
-        if (result.credential) {
-          // This gives you a Google Access Token.
-          var token = result.credential.accessToken;
-        }
-        var user = result.user;
-        console.log( 'getRedirectResult', user );
-      });
-    firebaseApp.auth().onAuthStateChanged((user) => {
-        if (user) {
-          // User is signed in.
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
-          // ...
-          if( user.providerData.length ) {
-            console.log( 'user', user );
-          }
-          else {
-            console.log( 'anonymous user', user );
-            this.setState({ user });
-          }
-        } else {
-          // User is signed out.
-          // ...
-        }
-        // ...
-      });
-    firebaseApp.auth().signInAnonymously();
   }
 }
 
