@@ -12,13 +12,16 @@ class AppContainer extends React.Component {
     }
 
     componentDidMount() {
-        firebaseApp.auth().getRedirectResult().then(function(result) {
+        firebaseApp.auth().getRedirectResult().then((result) => {
             if (result.credential) {
               // This gives you a Google Access Token.
               var token = result.credential.accessToken;
             }
             var user = result.user;
             console.log( 'getRedirectResult', user );
+            this.props.context.update( {
+                user,
+            } );
           });
         firebaseApp.auth().onAuthStateChanged((user) => {
             if (user) {
@@ -28,11 +31,14 @@ class AppContainer extends React.Component {
               // ...
               if( user.providerData.length ) {
                 console.log( 'user', user );
+                this.props.context.update( {
+                    user,
+                } );
               }
               else {
                 console.log( 'anonymous user', user );
                 this.props.context.update( {
-                    user,
+                    anonymous: user,
                 } );
               }
             } else {

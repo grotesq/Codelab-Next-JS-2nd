@@ -1,56 +1,70 @@
 import React from 'react'
 import Link from 'next/link'
+import firebase from 'firebase';
+import firebaseApp from '../firebase/firebaseApp';
+import { withAppContext } from '../contexts/AppContext';
 
-const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' }
-].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`
-  return link
-})
-
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href='/'>
-          <a>Home</a>
-        </Link>
-      </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
+let Nav = props => {
+  const googleLogin = () => {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      firebaseApp.auth().signInWithPopup(provider);
+      // firebaseApp.auth().signInWithRedirect(provider);
+  }
+  return(
+    <nav>
+      <ul>
+        <li>
+          <Link href='/feeds'>
+            <a>피드 목록</a>
+          </Link>
         </li>
-      ))}
-    </ul>
+        <li>
+          { props.context.user && (
+              <>
+                { props.context.user.displayName }
+              </>
+          ) }
+          { !props.context.user && (
+              <button className="btn btn-white" onClick={ googleLogin }>
+                로그인
+              </button>
+          ) }
+          
+        </li>
+      </ul>
 
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
-)
+      <style jsx>{`
+        :global(body) {
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
+            Helvetica, sans-serif;
+        }
+        nav {
+          text-align: center;
+        }
+        ul {
+          display: flex;
+          justify-content: space-between;
+        }
+        nav > ul {
+          padding: 4px 16px;
+        }
+        li {
+          display: flex;
+          padding: 6px 8px;
+        }
+        a {
+          color: #067df7;
+          text-decoration: none;
+          font-size: 13px;
+        }
+      `}</style>
+    </nav>
+  )
+}
+
+Nav = withAppContext( Nav );
 
 export default Nav

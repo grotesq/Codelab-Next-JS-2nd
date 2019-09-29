@@ -32,9 +32,13 @@ api.get( '/feeds', async context => {
     context.body = list;
 });
 api.post( '/feeds', async context => {
+    const displayName = context.request.body.displayName;
+    const avatar = context.request.body.avatar;
     const content = context.request.body.content;
     const now = moment().format( 'YYYY-MM-DD HH:mm:ss' );
     const doc = await db.collection('feeds').add({
+        displayName,
+        avatar,
         content,
         created_at: now,
         updated_at: now,

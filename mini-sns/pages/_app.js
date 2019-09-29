@@ -27,13 +27,6 @@ class MyApp extends App {
 
     return <div>
             <AppProvider>
-                <div>
-                    <header>
-                        <Link href='/feeds'>
-                            <a>피드 목록</a>
-                        </Link>
-                    </header>
-                </div>
                 <AppContainer>
                     <Component {...pageProps} />
                 </AppContainer>

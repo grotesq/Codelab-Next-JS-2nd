@@ -1,10 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import { withAppContext } from '../contexts/AppContext';
 
-export default () => {
+let FeedForm = props => {
     const [ content, setContent ] = React.useState('');
     const submit = () => {
         axios.post('/api/feeds', {
+            displayName: props.context.user.displayName,
+            avatar: props.context.user.photoURL,
             content,
         } )
         .then( () => {
@@ -32,3 +35,7 @@ export default () => {
         </>
     )
 }
+
+FeedForm = withAppContext(FeedForm);
+
+export default FeedForm;

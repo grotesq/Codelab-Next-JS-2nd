@@ -11,6 +11,7 @@ class AppProvider extends Component {
       // 글로벌 데이터
       key: 'value',
       user: null,
+      anonymous: null,
       // update
       update: (state, callback) => {
         this.setState(state, callback);
